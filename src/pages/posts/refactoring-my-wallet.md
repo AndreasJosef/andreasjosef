@@ -57,7 +57,7 @@ The cycle replaces the anxiety of "Can I afford this?" with the binary clarity o
 
 I built a Notion Dashboard to handle the calculations and visualize the tanks.
 
-[Link to your Notion Template/Tutorial Here]
+[Download the Dashboard here](https://tremendous-advantage-a0d.notion.site/2d8fcdbd4f1481b49733c4553bc361bb?v=2d8fcdbd4f1481cbb20c000c5c3f1b7b)
 
 ---
 
