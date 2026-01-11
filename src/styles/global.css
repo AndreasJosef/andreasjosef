@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    /* --- The Zinc Palette (Deep, Rich Dark Mode) --- */
+    /* We use a very dark Zinc for background, not pure black */
+    --bg-app:        #121212;  /* #18181b equivalent-ish */
+    --bg-surface:    oklch(18% 0.02 260);    /* Slightly lighter for cards/inputs */
+    
+    /* Text Colors */
+    --fg-primary:    oklch(98% 0 0);         /* Almost white */
+    --fg-secondary:  oklch(65% 0.02 260);    /* Muted grey */
+    --fg-tertiary:   oklch(45% 0.02 260);    /* Subtle text */
+
+    /* --- Brand Colors --- */
+    --brand:         oklch(76% 0.16 75);     
+    --brand-fg:      oklch(14.5% 0.02 260);  /* Dark text on yellow btn */
+    
+    /* --- Borders --- */
+    --border-dim:    oklch(25% 0.02 260);
+    --border-brand:  oklch(76% 0.16 75);
+  }
+}
+
+@theme {
+  /* Map CSS vars to Tailwind utilities */
+  --color-app: var(--bg-app);
+  --color-surface: var(--bg-surface);
+  
+  --color-foreground: var(--fg-primary);
+  --color-muted: var(--fg-secondary);
+  --color-subtle: var(--fg-tertiary);
+
+  --color-brand: var(--brand);
+  --color-brand-fg: var(--brand-fg);
+  
+  --color-border-dim: var(--border-dim);
+
+  /* Define Fonts */
+  --font-sans: "Noto Sans", sans-serif;
+
+}
