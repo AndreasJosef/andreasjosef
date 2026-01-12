@@ -1,0 +1,77 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection, type CollectionEntry } from "astro:content";
+import { formatDate } from "../../utils/formatDate";
+
+export async function getStaticPaths() {
+  const notes = await getCollection("notes")
+  
+  // Filter out drafts in production
+  const publishedNotes = notes.filter(note => 
+    import.meta.env.PROD ? !note.data.draft : true
+  )
+
+  return publishedNotes.map((note) => ({
+    params: { slug: note.slug },
+    props: { note },
+  }))
+}
+
+interface Props {
+  note: CollectionEntry<"notes">
+}
+
+const { note } = Astro.props
+const { Content } = await note.render()
+---
+
+<BaseLayout 
+  title={`${note.data.title} - Andreas Stratmann`}
+  description={note.data.description}
+>
+  <main class="min-h-screen pt-24 pb-32 px-6">
+    <article class="max-w-3xl mx-auto">
+      <!-- Header -->
+      <header class="mb-12">
+        <!-- Back Navigation -->
+        <nav class="mb-8">
+          <a 
+            href="/notes" 
+            class="text-muted hover:text-foreground transition-colors inline-flex items-center gap-1"
+          >
+            ← Back to Notes
+          </a>
+        </nav>
+        
+        <!-- Title -->
+        <h1 class="font-serif font-medium text-4xl md:text-5xl leading-tight tracking-tight text-foreground mb-4">
+          {note.data.title}
+        </h1>
+        
+        <!-- Metadata -->
+        <div class="flex flex-col sm:flex-row gap-4 text-muted text-sm">
+          <time datetime={note.data.publishedAt.toISOString()}>
+            {formatDate(note.data.publishedAt)}
+          </time>
+          {note.data.draft && (
+            <span class="text-yellow-600 dark:text-yellow-400">
+              Draft
+            </span>
+          )}
+        </div>
+        
+        <!-- Description -->
+        {note.data.description && (
+          <p class="text-lg text-muted mt-6 max-w-2xl">
+            {note.data.description}
+          </p>
+        )}
+      </header>
+
+      <!-- Content -->
+      <div class="note prose prose-zinc max-w-none">
+        <Content />
+      </div>
+    </article>
+  </main>
+</BaseLayout>

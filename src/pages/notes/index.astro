@@ -1,0 +1,68 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro"
+import { getCollection } from "astro:content"
+import { formatDate } from "../../utils/formatDate"
+import { ArrowUpRight } from "@lucide/astro"
+
+// Query the notes collection
+const allNotes = await getCollection("notes")
+
+// Filter out drafts in production
+const publishedNotes = allNotes.filter(note => 
+  import.meta.env.PROD ? !note.data.draft : true
+)
+
+// Sort by publishedAt descending (newest first)
+const sortedNotes = publishedNotes.sort((a, b) => 
+  new Date(b.data.publishedAt).getTime() - new Date(a.data.publishedAt).getTime()
+)
+---
+
+<BaseLayout title="Notes - Andreas Stratmann">
+  <main class="min-h-screen flex flex-col items-start md:items-center text-left md:text-center pt-10 md:pt-32 p-6 relative border-t-6 border-zinc-700 w-full">
+
+    <!-- Header -->
+    <h1 class="font-serif font-medium text-3xl md:text-5xl leading-tight tracking-tight text-foreground/60 md:text-balance max-w-3xl mb-8 md:mb-12">
+      Notes
+    </h1>
+    
+    <!-- Description -->
+    <p class="text-lg text-muted font-light max-w-md md:text-balance mb-12 md:mb-16">
+      Thoughts on software, systems, and the journey of learning.
+    </p>
+
+    <!-- Notes Grid -->
+    {sortedNotes.length > 0 ? (
+      <div class="flex flex-col sm:flex-row gap-6 sm:gap-12 text-left w-full md:w-auto">
+        {sortedNotes.map((note) => (
+          <a
+            href={`/notes/${note.slug}`}
+            class="group block max-w-xs w-full p-5 rounded-xl border border-zinc-200/20 sm:max-w-xs"
+          >
+            <span
+              class="block text-foreground font-medium text-lg mb-1 group-hover:text-brand transition-colors"
+            >
+              {note.data.title}
+              <ArrowUpRight size="12" class="inline ml-1" />
+            </span>
+            <span
+              class="block text-muted font-light leading-relaxed group-hover:text-foreground transition-colors"
+            >
+              {note.data.description}
+            </span>
+            <span
+              class="block text-subtle text-sm mt-2"
+            >
+              {formatDate(note.data.publishedAt)}
+            </span>
+          </a>
+        ))}
+      </div>
+    ) : (
+      <div class="text-muted font-light max-w-md md:text-balance">
+        <p>No notes yet. Check back soon!</p>
+      </div>
+    )}
+
+  </main>
+</BaseLayout>
