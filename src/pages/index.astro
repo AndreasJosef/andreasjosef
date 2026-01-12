@@ -1,58 +1,66 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Logo from "../components/Logo.astro";
+
+// --- Content Configuration ---
+const content = {
+  greeting: {
+    start: "Hi,",
+    name: "I’m Andreas." // Renders in brand color
+  },
+  intro: "Welcome to my attempt at making sense of things.",
+  headline: "Explorations in software, systems, and ideas.",
+  studio: {
+    label: "My Studio",
+    description: "Building software systems to solve problems",
+    highlight: "@Field Logic." // Renders in italic/semibold
+  },
+  notes: {
+    label: "Notes",
+    description: "Personal reflections on living and learning."
+  },
+  footer: "One person's effort"
+};
 ---
 
 <BaseLayout title="Andreas Stratmann">
-  <main
-    class="min-h-screen flex flex-col items-center justify-center p-6 text-center relative"
-  >
-    <Logo />
+  <main class="min-h-screen flex flex-col items-center pt-20 md:pt-32 p-6 text-center relative border-t-6 border-zinc-700">
+      
+      <p class="text-lg text-muted font-light max-w-md text-balance mb-2">
+        {content.greeting.start} <span class="text-brand font-normal">{content.greeting.name}</span><br />
+      </p>
 
-    <h1
-      class="font-serif font-medium text-3xl md:text-5xl leading-tight tracking-tight text-zinc-400 text-balance max-w-2xl mb-6"
-    >
-      Hi, I’m Andreas. <br />
-      Welcome to my attempt at <br />
-      making sense of things.
-    </h1>
+      <p class="text-lg text-muted font-light max-w-md text-balance mb-12">
+        {content.intro}
+      </p>
 
-    <p class="text-lg text-muted font-light max-w-md text-balance mb-16">
-      A personal collection of software, systems, and ideas.
-    </p>
+      <h1 class="font-serif font-medium text-3xl md:text-5xl leading-tight tracking-tight text-foreground/60 text-balance max-w-3xl mb-16">
+        {content.headline}
+      </h1>
 
-    <div class="flex flex-col sm:flex-row gap-12 text-left">
-      <a href="/studio" class="group block max-w-xs">
-        <span
-          class="block text-foreground font-medium text-lg mb-1 group-hover:text-brand transition-colors"
-        >
-          The Studio
-        </span>
-        <span
-          class="block text-muted font-light leading-relaxed group-hover:text-foreground transition-colors"
-        >
-          Field Logic, building software systems to solve problems.
-        </span>
-      </a>
+      <div class="flex flex-col sm:flex-row gap-12 text-left">
+        
+        <a href="/studio" class="group block max-w-xs">
+          <span class="block text-foreground font-medium text-lg mb-1 group-hover:text-brand transition-colors">
+            {content.studio.label}
+          </span>
+          <span class="block text-muted font-light leading-relaxed group-hover:text-foreground transition-colors">
+            {content.studio.description} <span class="italic font-semibold text-foreground/80">{content.studio.highlight}</span>
+          </span>
+        </a>
 
-      <a href="/notes" class="group block max-w-xs">
-        <span
-          class="block text-foreground font-medium text-lg mb-1 group-hover:text-brand transition-colors"
-        >
-          The Notes
-        </span>
-        <span
-          class="block text-muted font-light leading-relaxed group-hover:text-foreground transition-colors"
-        >
-          Reflections on living and learning.
-        </span>
-      </a>
-    </div>
+        <a href="/notes" class="group block max-w-xs">
+          <span class="block text-foreground/80 font-medium text-lg mb-1 group-hover:text-brand transition-colors">
+            {content.notes.label}
+          </span>
+          <span class="block text-muted font-light leading-relaxed group-hover:text-foreground transition-colors">
+            {content.notes.description}
+          </span>
+        </a>
+      </div>
 
-    <footer
-      class="absolute bottom-12 text-subtle text-xs tracking-widest uppercase opacity-40"
-    >
-      One person's effort &copy; {new Date().getFullYear()}
-    </footer>
+      <footer class="absolute bottom-12 text-subtle text-xs tracking-widest uppercase opacity-40">
+        {content.footer} &copy; {new Date().getFullYear()}
+      </footer>
+
   </main>
 </BaseLayout>
