@@ -1,32 +1,14 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Logo from "../components/Logo.astro";
 ---
 
 <BaseLayout title="Andreas Stratmann">
   <main
     class="min-h-screen flex flex-col items-center justify-center p-6 text-center relative"
   >
-    <div
-      class="mb-12 opacity-40 hover:opacity-80 transition-opacity duration-500"
-    >
-      <div
-        class="w-16 h-16
-    border border-foreground/50 rounded-xs
-    flex flex-col items-center justify-center p-1"
-      >
-        <div
-          class="w-full h-full
-      border border-foreground/30 rounded-[1px]
-      flex items-center justify-center"
-        >
-          <span
-            class="font-serif italic text-xl font-medium text-foreground pt-1 tracking-tighter"
-          >
-            AS
-          </span>
-        </div>
-      </div>
-    </div>
+    <Logo />
+
     <h1
       class="font-serif font-medium text-3xl md:text-5xl leading-tight tracking-tight text-zinc-400 text-balance max-w-2xl mb-6"
     >
