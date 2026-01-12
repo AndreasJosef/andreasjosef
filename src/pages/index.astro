@@ -1,25 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-
-// --- Content Configuration ---
-const content = {
-  greeting: {
-    start: "Hi,",
-    name: "I’m Andreas." 
-  },
-  intro: "Welcome to my attempt at making sense of things.",
-  headline: "Explorations in software, systems, and ideas.",
-  studio: {
-    label: "Studio",
-    description: "Building software systems to solve problems",
-    highlight: "@Field Logic." 
-  },
-  notes: {
-    label: "Notes",
-    description: "Personal reflections on living and learning."
-  },
-  footer: "One person's effort"
-};
+import { content } from "../../data/home";
 ---
 
 <BaseLayout title="Andreas Stratmann">
