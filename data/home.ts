@@ -13,7 +13,7 @@ const v1 = {
   },
   notes: {
     label: "Notes",
-    description: "Here I publish reflections on living and learning."
+    description: "I publish my reflections on living and learning."
   },
   footer: "One person's effort"
 };

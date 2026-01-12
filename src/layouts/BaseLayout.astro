@@ -6,6 +6,8 @@ interface Props {
   description?: string;
 }
 
+import { content } from "../../data/home";
+
 const { 
   title, 
   description = "A personal collection of software, systems, and ideas." 
@@ -36,5 +38,11 @@ const {
 
     <slot />
     
+    <!-- Page footer TODO move to layout -->
+    <footer
+      class="w-full text-center absolute bottom-12 text-subtle text-xs tracking-widest uppercase opacity-40"
+    >
+      {content.footer} &copy; {new Date().getFullYear()}
+    </footer>
   </body>
 </html>
