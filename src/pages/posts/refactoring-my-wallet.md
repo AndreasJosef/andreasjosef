@@ -1,7 +1,8 @@
 ---
 title: "Refactoring My Wallet: Why I Treated My Finances Like a Legacy Codebase"
+pubDate: '2025-12-21'
+layout: "../../layouts/PostLayout.astro"
 ---
-# Refactoring My Wallet: Why I Treated My Finances Like a Legacy Codebase
 
 As a developer, a big part of the job is debugging: find what breaks the code, fix it, and move on. Recently, I applied this same approach to my personal finances, and unsurprisingly, it worked wonders.
 

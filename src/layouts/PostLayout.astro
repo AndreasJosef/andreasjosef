@@ -1,0 +1,98 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+
+const { frontmatter } = Astro.props;
+---
+
+<BaseLayout title={frontmatter.title}>
+    <article class="w-full max-w-prose mx-auto px-6 py-24">
+        <header class="mb-12 text-center">
+            <div
+                class="text-xs font-sans uppercase tracking-widest text-subtle mb-4"
+            >
+                {
+                    frontmatter.pubDate &&
+                        new Date(frontmatter.pubDate).toLocaleDateString(
+                            "en-US",
+                            {
+                                year: "numeric",
+                                month: "long",
+                                day: "numeric",
+                            },
+                        )
+                }
+            </div>
+            <h1
+                class="font-serif text-4xl md:text-5xl font-medium text-foreground text-balance"
+            >
+                {frontmatter.title}
+            </h1>
+        </header>
+
+        <div class="note">
+            <slot />
+        </div>
+    </article>
+</BaseLayout>
+
+<style is:global>
+    @reference "../styles/global.css";
+
+    .note {
+        p {
+            @apply font-sans text-xl text-muted leading-8 mb-6;
+        }
+
+        /* 2. HEADINGS */
+        h2 {
+            @apply font-serif text-2xl text-foreground font-medium mt-12 mb-4;
+        }
+        h3 {
+            @apply font-serif text-xl text-foreground font-medium mt-8 mb-3;
+        }
+
+        /* 3. LISTS */
+        ul {
+            @apply list-disc list-outside ml-4 mb-6 text-muted font-light marker:text-brand;
+        }
+        ol {
+            @apply list-decimal list-outside ml-4 mb-6 text-muted font-light marker:text-brand;
+        }
+        li {
+            @apply pl-2 mb-2 leading-7;
+        }
+
+        /* 4. LINKS */
+        a {
+            @apply text-foreground border-b border-brand/50 hover:border-brand transition-colors no-underline;
+        }
+
+        /* 5. QUOTES */
+        blockquote {
+            @apply border-l-2 border-brand/50 pl-6 my-8 italic font-serif text-xl text-foreground/80;
+        }
+
+        /* 6. CODE BLOCKS */
+        pre {
+            @apply p-4 rounded-lg bg-surface border border-border-dim overflow-x-auto text-sm my-6;
+        }
+        code {
+            @apply font-mono text-sm;
+        }
+        /* Inline code (not inside pre) */
+        p code,
+        li code {
+            @apply px-1.5 py-0.5 rounded bg-surface border border-border-dim text-foreground text-xs font-medium;
+        }
+
+        /* 7. IMAGES */
+        img {
+            @apply rounded-xl w-full h-auto my-8 border border-border-dim;
+        }
+
+        /* 8. HORIZONTAL RULE */
+        hr {
+            @apply border-border-dim my-12;
+        }
+    }
+</style>
