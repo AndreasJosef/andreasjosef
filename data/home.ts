@@ -29,7 +29,6 @@ const v2 = {
 const v3 = {
   ...v2,
   intro: '',
-  headline: "Explorations in software, systems, and ideas.",
   greeting: {
     start: "Digital home of",
     name: "Andreas Stratmann"

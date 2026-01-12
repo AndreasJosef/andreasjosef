@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { content } from "../../data/home";
+import { ArrowUpRight } from "@lucide/astro"
 ---
 
 <BaseLayout title="Andreas Stratmann">
@@ -11,7 +12,7 @@ import { content } from "../../data/home";
     <!-- Greeting -->
     <p class="text-lg text-muted font-light max-w-md md:text-balance mb-10">
       {content.greeting.start}
-      <span class="text-brand font-normal">{content.greeting.name}</span><br />
+      <span class="text-brand font-normal">{content.greeting.name}<ArrowUpRight size="12" class="inline" /></span><br />
     </p>
 
     <!-- Intro if it exists -->
@@ -34,7 +35,7 @@ import { content } from "../../data/home";
     >
       <a
         href="/studio"
-        class="group block max-w-xs w-full p-5 rounded-xl border border-zinc-200/20 sm:w-auto sm:p-0 sm:border-0 sm:bg-transparent sm:max-w-xs"
+        class="group block max-w-xs w-full p-5 rounded-xl border border-zinc-200/20 sm:max-w-xs"
       >
         <span
           class="block text-foreground font-medium text-lg mb-1 group-hover:text-brand transition-colors"
@@ -53,7 +54,7 @@ import { content } from "../../data/home";
 
       <a
         href="/notes"
-        class="group block max-w-xs w-full p-5 rounded-xl border border-zinc-200/20 sm:w-auto sm:p-0 sm:border-0 sm:bg-transparent sm:max-w-xs"
+        class="group block max-w-xs w-full p-5 rounded-xl border border-zinc-200/20 sm:w-auto  sm:max-w-xs"
       >
         <span
           class="block text-foreground/80 font-medium text-lg mb-1 group-hover:text-brand transition-colors"
